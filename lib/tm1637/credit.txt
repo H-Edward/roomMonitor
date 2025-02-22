@@ -1,0 +1,3 @@
+https://github.com/Imel23/TM1637-Library-for-Raspberry-Pi-Pico
+
+Slight edit to add a blank char to the array, so that the lhs leading zeros aren't displayed as a '0' char.

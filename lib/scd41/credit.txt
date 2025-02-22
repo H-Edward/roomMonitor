@@ -1,0 +1,1 @@
+https://github.com/miekush/pico-scd41-co2-meter
