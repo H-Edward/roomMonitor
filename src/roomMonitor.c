@@ -101,18 +101,18 @@ void core1_main() { // core 1 will handle the display general i/o logic
 
         if (current_display == 0 && prev_temp != temperature_meaningful) {
             prev_temp = temperature_meaningful;
-            printf("Temperature: %d °C\n", temperature_meaningful);
-            tm1637_display_number(temperature_meaningful);
+            // printf("Temperature: %d °C\n", temperature_meaningful);
+            tm1637_display_number_without_leading_zero(temperature_meaningful);
 
         } else if (current_display == 1 && prev_humidity != humidity_meaningful) {
             prev_humidity = humidity_meaningful;
-            printf("Humidity: %d RH%%\n", humidity_meaningful);
-            tm1637_display_number(humidity_meaningful);
+            // printf("Humidity: %d RH%%\n", humidity_meaningful);
+            tm1637_display_number_without_leading_zero(humidity_meaningful);
 
         } else if (current_display == 2 && prev_co2 != co2_meaningful) {
             prev_co2 = co2_meaningful;
-            printf("CO2: %d ppm\n", co2_meaningful);
-            tm1637_display_number(co2_meaningful);
+            // printf("CO2: %d ppm\n", co2_meaningful);
+            tm1637_display_number_without_leading_zero(co2_meaningful);
         }
     }
 }
@@ -137,9 +137,7 @@ int main() { // core 0 will handle the sensor logic and signaling core 1 to show
     while (true) {
             int16_t error = scd4x_read_measurement(&co2_meaningful, &temperature, &humidity);
             make_data_meaningful(&temperature, &humidity, &temperature_meaningful, &humidity_meaningful);
-            //printf("CO2: %d ppm\n", co2_meaningful);
-            //printf("Temperature: %d °C\n", temperature_meaningful);
-            //printf("Humidity: %d RH%%\n", humidity_meaningful);
+
             sleep_ms(5000);
         }
 
@@ -148,11 +146,7 @@ int main() { // core 0 will handle the sensor logic and signaling core 1 to show
 void make_data_meaningful(int32_t *temperature, int32_t *humidity, int32_t *temperature_meaningful, int32_t *humidity_meaningful) {
     // co2 is already ppm and does not need to be modified
 
-    // temperature is in mDegC and needs to be divided by 1000 to get DegC
-
     *temperature_meaningful = *temperature / 1000;
-
-    // humidity is in mRH and needs to be divided by 1000 to get RH
 
     *humidity_meaningful = *humidity / 1000;
     return;    

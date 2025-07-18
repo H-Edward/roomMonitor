@@ -5,9 +5,9 @@
 This is a project involving:
 
 - A Raspberry Pi Pico H
-- A SCD41 CO2 sensor (with temperature and humidity))
+- A SCD41 CO2 sensor (with temperature and humidity)
 - A TM1637 4-digit 7-segment display
-- A red LED
+- An RGB LED
 - 4 buttons
 - A live/ground rail of a breadboard
 - A 3D-printed case
